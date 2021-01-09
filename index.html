@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Contact management</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<form>
+  <input type="checkbox" checked onclick = "displayGold()">
+  <label> Gold </label><br>
+  <input type="checkbox" checked onclick = "displaySilver()">
+  <label> Silver </label><br>
+  <input type="checkbox" checked onclick = "displayBronze()">
+  <label> Bronze </label>
+</form>
+<br>
+<button onclick="sort(1)">Ascending</button>
+<button onclick="sort(2)">Descending</button>
+<button onclick="defaultOrder()">Reset</button>
+<br>
+<br>
+<table id="myTable">
+    <tr>
+      <th>Icon</th>
+      <th>Username</th>
+      <th>ID</th>
+      <th>Contributions</th>
+    </tr>
+</table>
+
+<script src="main.js"></script>
+
+</body>
+</html>

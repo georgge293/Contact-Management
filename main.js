@@ -2,6 +2,7 @@
 $.getJSON({
   url: "https://api.github.com/repos/thomasdavis/backbonetutorials/contributors",
 
+
   success: function(data){
     let htmlStr = "<tbody>";
     for(let i=0; i < data.length; i++){
@@ -19,7 +20,33 @@ $.getJSON({
         "<td>" + data[i].id + "</td>" +
         "<td>" + data[i].contributions + "</td>";
 
-        htmlStr += "</tr></tbody>";
+        $.getJSON({
+          url: "https://api.github.com/users/"+data[i].login,
+          async: false,
+          success: function(content){
+            if(content.company == null){
+              htmlStr +="<td></td>";
+            }
+            else{
+              htmlStr+= "<td>"+ content.company + "</td>";
+            }
+            if(content.location == null){
+              htmlStr += "<td></td>";
+            }
+            else {
+              htmlStr += "<td>" + content.location + "</td>";
+            }
+            if(content.email == null){
+              htmlStr += "<td></td></tr></tbody>";
+            }
+            else{
+              htmlStr += "<td>" + content.email + "</td></tr></tbody>";
+            }
+          },
+          fail: function(){
+            alert("error");
+          }
+        });
     }
     $("table").append(htmlStr);
   },
@@ -27,8 +54,6 @@ $.getJSON({
     alert("error");
   }
 });
-
-
 
 //Step 2 SPLITING CONTACTS INTO GROUPS
 function displayGold() {

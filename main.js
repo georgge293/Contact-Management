@@ -37,10 +37,10 @@ $.getJSON({
               htmlStr += "<td>" + content.location + "</td>";
             }
             if(content.email == null){
-              htmlStr += "<td></td></tr></tbody>";
+              htmlStr += "<td></td><td class = 'invis'><button onClick = editProfile(" + i + ")>Edit Profile</button></td></tr></tbody>";
             }
             else{
-              htmlStr += "<td>" + content.email + "</td></tr></tbody>";
+              htmlStr += "<td>" + content.email + "</td><td><button></button></td></tr></tbody>";
             }
           },
           fail: function(){
@@ -80,21 +80,31 @@ function display(arrayOfElements){
 }
 //Step 3
 function sort(sortType){
-  var table, rows, switching, i, x, y, shouldSwitch;
+  var table, rows, switching, i, x, y, shouldSwitch, column;
   table = document.getElementById("myTable");
   switching = true;
+  if(sortType == 1 || sortType == 2){
+    column = 1;
+  }
+  else{
+    column = 3;
+  }
   while (switching) {
     switching = false;
     rows = table.rows;
     for (i = 1; i < (rows.length - 1); i++) {
       shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[1];
-      y = rows[i + 1].getElementsByTagName("TD")[1];
+      x = rows[i].getElementsByTagName("TD")[column];
+      y = rows[i + 1].getElementsByTagName("TD")[column];
       if(sortType == 1 && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()){
         shouldSwitch = true;
         break;
       }
       else if(sortType == 2 && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+      else if(sortType == 3 && parseInt(x.innerHTML) < parseInt(y.innerHTML)){
         shouldSwitch = true;
         break;
       }
@@ -105,26 +115,7 @@ function sort(sortType){
     }
   }
 }
+//part 5
+function editProfile(i){
 
-function defaultOrder(){
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("myTable");
-  switching = true;
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[3];
-      y = rows[i + 1].getElementsByTagName("TD")[3];
-      if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-        shouldSwitch = true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
 }

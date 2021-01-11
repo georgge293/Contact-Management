@@ -2,9 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact management</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -17,9 +19,10 @@
   <label> Bronze </label>
 </form>
 <br>
+<!-- 1 = Ascending  2 = Descending  3 = Reset (Sort by contributions) -->
 <button onclick="sort(1)">Ascending</button>
 <button onclick="sort(2)">Descending</button>
-<button onclick="defaultOrder()">Reset</button>
+<button onclick="sort(3)">Reset</button>
 <br>
 <br>
 <table id="myTable">
@@ -31,6 +34,7 @@
       <th>Company</th>
       <th>Location</th>
       <th>Email</th>
+      <th class = "invis"></th>
     </tr>
 </table>
 

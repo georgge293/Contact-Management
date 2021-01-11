@@ -16,5 +16,9 @@ table {
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 15px;
+  padding: 10px;
+}
+
+.invis {
+  border: 1px solid #ffffff
 }
